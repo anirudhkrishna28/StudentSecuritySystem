@@ -12,12 +12,12 @@ import java.util.List;
 public class TeacherDao extends Student {
 
     static int noOfStud = 0;
-    static int length =0;
+    static int len =0;
      static int length=0;  //UPDATED
     static int i=0; //UPDATED
     static int j=0;//UPDATED
     static List<Teacher> stud = new ArrayList<Teacher>();
-
+    static List<Teacher> eventstud = new ArrayList<Teacher>();
     
     public static void writeAttendance(Connection con, Teacher t, Integer id) throws SQLException {
         //writes attendance into database
@@ -37,7 +37,7 @@ public class TeacherDao extends Student {
     }
 
         public static void getEvent(BufferedReader br,Connection con) throws IOException, SQLException {
-        int i=length;
+        int i=len;
             while(i-->0)
             {
                 System.out.println("Enter the rollno:");
@@ -54,7 +54,7 @@ public class TeacherDao extends Student {
         }
 
     public static void getPresent(BufferedReader br,Connection con) throws IOException, SQLException {
-    int i=length;
+    int i=len;
         while(i-->0)
         {
             System.out.println("Enter the rollno:");
@@ -70,7 +70,7 @@ public class TeacherDao extends Student {
             }
 
         }
-    }
+
 
 
     public static void displayStudnetsPresent(Connection con) throws SQLException {
@@ -93,16 +93,24 @@ public class TeacherDao extends Student {
         }
 
     }
+    static  int inevents=0;
    public static void StudnetEvent(Connection con) throws SQLException {
         Statement st  = con.createStatement();
-        String query = "select name,event where event is NOT NULL";
+        String query = "select Name_of_Student,Participated_Event from Student where Participated_Event is NOT NULL";
         ResultSet rs = st.executeQuery(query);
 
-        while(i<length)
+
+        while(rs.next())
         {
-        	String event =rs.getString("Participated_Event");
-       	 stud.get(i).setEvent(event);
-       	 i++;
+            Teacher t = new Teacher();
+            String name =rs.getString("Name_of_Student");
+        	String e =rs.getString("Participated_Event");
+
+            t.setName(name);
+            t.setEvent(e);
+       	    eventstud.add(t);
+               inevents++;
+       	    i++;
         }
     }
    
@@ -118,10 +126,10 @@ public class TeacherDao extends Student {
    
    public static void displayevent()
    {
-       int i= noOfStud;
+       int i= inevents;
        while(i-->0)
        {
-           System.out.println("name: "+stud.get(i).getName()+" "+"  Event  ");
+           System.out.println("name: "+eventstud.get(i).getName()+"  "+"Event  :"+eventstud.get(i).getEvent());
        }
 
    }
@@ -132,7 +140,7 @@ public class TeacherDao extends Student {
         String query = "select count(Roll_Number) from Student";
         ResultSet rs = st.executeQuery(query);
         rs.next();
-         length = rs.getInt("COUNT(Roll_Number)");
+         len = rs.getInt("COUNT(Roll_Number)");
 
 
     }
@@ -152,7 +160,8 @@ public class TeacherDao extends Student {
 //       getPresent(br,con);
 //        getEvent(br,con);
 
-        count(con);
+        StudnetEvent(con);
+        displayevent();
 
 
 
