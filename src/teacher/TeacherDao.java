@@ -22,9 +22,9 @@ public class TeacherDao {
     }
 
     public static void main(String[] args) throws Exception{
-        String url="jdbc:mysql://localhost:3306/test";
+        String url="jdbc:mysql://localhost:3306/ani";
         String uname="root";
-        String pass="Goniya030612#";
+        String pass="anirudh";
         String query="select * from studentsecurity";
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url,uname,pass);
