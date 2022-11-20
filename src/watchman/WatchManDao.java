@@ -9,11 +9,11 @@ import java.util.List;
 
 public class WatchManDao {
 
-    static int noOfBus = 3;
+    static int noOfBus = 5;
     static List<WatchMan> watchmen = new ArrayList<WatchMan>();
     public static void writeIntime(Connection con,WatchMan w,Integer busno) throws SQLException {
         //writes intime into database
-        String query = "update bus set intime = '"+w.getInTime()+"' where busno = "+busno;
+        String query = "update Watchman set In_Time = '"+w.getInTime()+"' where Bus_no = "+busno;
 //        System.out.println(query);
         PreparedStatement st  = con.prepareStatement(query);
         st.executeUpdate();
@@ -45,7 +45,6 @@ public class WatchManDao {
         int i=0;
         while(i<noOfBus)
         {
-            WatchMan w = new WatchMan();
             System.out.print("Enter the bus no:");
             Integer busno = Integer.parseInt(br.readLine());
 
@@ -63,7 +62,7 @@ public class WatchManDao {
     public static  void writeOuttime(Connection con,WatchMan w,Integer busno) throws SQLException
     {
         //writes Outtime into database
-        String query = "update bus set outtime = '"+w.getOutTime()+"' where busno = "+busno;
+        String query = "update Watchman set Out_Time = '"+w.getOutTime()+"' where Bus_no = "+busno;
 //        System.out.println(query);
         PreparedStatement st  = con.prepareStatement(query);
         st.executeUpdate();
@@ -83,7 +82,6 @@ public static void busDetails()
         String url="jdbc:mysql://localhost:3306/ani";
         String uname="root";
         String pass="anirudh";
-        String query="select * from studentsecurity";
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url,uname,pass);
         System.out.println("1)insert Intime.\n2)insert Outtime.\n3)Display all Bus Details.\n4)exit.");
