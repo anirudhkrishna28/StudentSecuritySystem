@@ -67,7 +67,7 @@ public class TeacherDao extends Student {
             }
 
         }
-    }
+
 
 
     public static void displayStudnetsPresent(Connection con) throws SQLException {
