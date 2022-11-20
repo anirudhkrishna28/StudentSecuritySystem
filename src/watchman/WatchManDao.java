@@ -71,8 +71,10 @@ public class WatchManDao {
     }
 public static void busDetails()
 {
+    System.out.println();
     int i=3;
     while(i-->0)
+
     System.out.println("Bus no:"+watchmen.get(i).getBusNO()+"  Intime: "+watchmen.get(i).getInTime()+"   OutTime :"+watchmen.get(i).getOutTime()+"\n");
 }
     public static void main(String[] args) throws Exception{
