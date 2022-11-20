@@ -1,33 +1,22 @@
 package teacher;
+ public class Teacher {
+	 private String event;
+	   private String attendance;
 
-public class Teacher {
-    private String event;
-    private Integer studId;
-    private boolean isPresent;
+	    private Integer id;
 
-    public String getEvent() {
-        return event;
-    }
+	    public String getEvent() {
+	        return event;
+	    }
 
-    public void setEvent(String event) {
-        this.event = event;
-    }
+	    public void setEvent(String event) {
+	        this.event = event;
+	    }
 
-    public Integer getStudId() {
-        return studId;
-    }
-
-    public void setStudId(Integer studId) {
-        this.studId = studId;
-    }
-
-    public boolean isPresent() {
-        return isPresent;
-    }
-
-    public void setPresent(boolean present) {
-        isPresent = present;
-    }
-
-
+	    public String getAttendance() {
+	        return attendance;    
+     }
+	    public void setAttendance(String attendance) {
+	        this.attendance = attendance;
+	    }
 }
