@@ -13,11 +13,12 @@ public class TeacherDao extends Student {
 
     static int noOfStud = 0;
     static int length =0;
-     static int length=0;  //UPDATED
+     static int len=0;  //UPDATED
     static int i=0; //UPDATED
     static int j=0;//UPDATED
     static List<Teacher> stud = new ArrayList<Teacher>();
 
+    static List<Teacher> eventstud = new ArrayList<Teacher>();
     
     public static void writeAttendance(Connection con, Teacher t, Integer id) throws SQLException {
         //writes attendance into database
@@ -70,7 +71,8 @@ public class TeacherDao extends Student {
             }
 
         }
-    }
+
+
 
 
     public static void displayStudnetsPresent(Connection con) throws SQLException {
@@ -93,22 +95,28 @@ public class TeacherDao extends Student {
         }
 
     }
+    static int inevent=0;
    public static void StudnetEvent(Connection con) throws SQLException {
         Statement st  = con.createStatement();
-        String query = "select name,event where event is NOT NULL";
+        String query = "select Name_of_Student,Participated_Event from Student where Participated_Event is NOT NULL";
         ResultSet rs = st.executeQuery(query);
 
-        while(i<length)
+        while(rs.next())
         {
+            Teacher t = new Teacher();
         	String event =rs.getString("Participated_Event");
-       	 stud.get(i).setEvent(event);
+            String name = rs.getString("Name_of_Student");
+            t.setName(name);
+            t.setEvent(event);
+       	    eventstud.add(t);
+               inevent++;
        	 i++;
         }
     }
    
     public static void display()
     {
-        int i= noOfStud;
+        int i= inevent;
         while(i-->0)
         {
             System.out.println("name: "+stud.get(i).getName()+" "+"  Intime: "+stud.get(i).getIntime()+"  OutTime: "+stud.get(i).getOuttime());
@@ -118,10 +126,10 @@ public class TeacherDao extends Student {
    
    public static void displayevent()
    {
-       int i= noOfStud;
+       int i= inevent;
        while(i-->0)
        {
-           System.out.println("name: "+stud.get(i).getName()+" "+"  Event  ");
+           System.out.println("name: "+eventstud.get(i).getName()+" "+"  Event : "+eventstud.get(i).getEvent());
        }
 
    }
@@ -153,6 +161,8 @@ public class TeacherDao extends Student {
 //        getEvent(br,con);
 
         count(con);
+        StudnetEvent(con);
+        displayevent();
 
 
 
