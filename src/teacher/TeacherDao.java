@@ -121,7 +121,7 @@ public class TeacherDao extends Student {
        int i= noOfStud;
        while(i-->0)
        {
-           System.out.println("name: "+stud.get(i).getName()+" "+"  Event  ");
+           System.out.println("name: "+stud.get(i).getName()+" "+"  Event  "+stud.get(i).getEvent());
        }
 
    }
