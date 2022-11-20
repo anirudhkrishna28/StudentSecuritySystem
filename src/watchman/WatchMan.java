@@ -1,10 +1,23 @@
 package watchman;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WatchMan {
    private String inTime;
    private String outTime;
 
+    public Integer getBusNO() {
+        return busNO;
+    }
+
+    public void setBusNO(Integer busNO) {
+        this.busNO = busNO;
+    }
+
     private Integer busNO;
+
+
 
     public String getInTime() {
         return inTime;
