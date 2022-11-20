@@ -13,6 +13,9 @@ public class TeacherDao extends Student {
 
     static int noOfStud = 0;
     static int length =0;
+     static int length=0;  //UPDATED
+    static int i=0; //UPDATED
+    static int j=0;//UPDATED
     static List<Teacher> stud = new ArrayList<Teacher>();
 
     
@@ -67,7 +70,7 @@ public class TeacherDao extends Student {
             }
 
         }
-
+    }
 
 
     public static void displayStudnetsPresent(Connection con) throws SQLException {
@@ -90,6 +93,19 @@ public class TeacherDao extends Student {
         }
 
     }
+   public static void StudnetEvent(Connection con) throws SQLException {
+        Statement st  = con.createStatement();
+        String query = "select name,event where event is NOT NULL";
+        ResultSet rs = st.executeQuery(query);
+
+        while(i<length)
+        {
+        	String event =rs.getString("Participated_Event");
+       	 stud.get(i).setEvent(event);
+       	 i++;
+        }
+    }
+   
     public static void display()
     {
         int i= noOfStud;
@@ -99,6 +115,17 @@ public class TeacherDao extends Student {
         }
 
     }
+   
+   public static void displayevent()
+   {
+       int i= noOfStud;
+       while(i-->0)
+       {
+           System.out.println("name: "+stud.get(i).getName()+" "+"  Event  ");
+       }
+
+   }
+    
 
     public  static void count(Connection con) throws SQLException {
         Statement st = con.createStatement();
