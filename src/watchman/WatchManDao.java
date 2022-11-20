@@ -35,6 +35,7 @@ public class WatchManDao {
     }
 
     public static void BusOuttime( Connection con,BufferedReader br) throws SQLException, IOException {
+        System.out.println("OUTTIME::::;");
         int noOfBus = 3;
         int i=0;
         while(i<noOfBus)
@@ -45,7 +46,7 @@ public class WatchManDao {
 
             System.out.print("Enter the outtime:");
             String intime =br.readLine();
-            w.setInTime(intime);
+            w.setOutTime(intime);
             writeOuttime(con, w, busno);
             i++;
 
