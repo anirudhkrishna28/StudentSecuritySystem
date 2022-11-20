@@ -9,6 +9,7 @@ import java.util.List;
 
 public class WatchManDao {
 
+    static int noOfBus = 3;
     static List<WatchMan> watchmen = new ArrayList<WatchMan>();
     public static void writeIntime(Connection con,WatchMan w,Integer busno) throws SQLException {
         //writes intime into database
@@ -20,7 +21,7 @@ public class WatchManDao {
 
     public static void BusIntime( Connection con,BufferedReader br) throws SQLException, IOException {
         System.out.println("ENTER THE IN TIME OF BUSSES \n");
-        int noOfBus = 3;
+
         int i=0;
         while(i<noOfBus)
         {
@@ -40,7 +41,7 @@ public class WatchManDao {
 
     public static void BusOuttime( Connection con,BufferedReader br) throws SQLException, IOException {
         System.out.println("ENTER THE OUT TIME OF BUSSES \n");
-        int noOfBus = 3;
+
         int i=0;
         while(i<noOfBus)
         {
@@ -72,7 +73,7 @@ public class WatchManDao {
 public static void busDetails()
 {
     System.out.println();
-    int i=3;
+    int i=noOfBus;
     while(i-->0)
 
     System.out.println("Bus no:"+watchmen.get(i).getBusNO()+"  Intime: "+watchmen.get(i).getInTime()+"   OutTime :"+watchmen.get(i).getOutTime()+"\n");
@@ -85,10 +86,25 @@ public static void busDetails()
         String query="select * from studentsecurity";
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url,uname,pass);
-        BusIntime(con,br);
-        BusOuttime(con,br);
+        System.out.println("1)insert Intime.\n2)insert Outtime.\n3)Display all Bus Details.\n4)exit.");
+        while(true) {
+            System.out.println("Enter the Choice:");
+            Integer ch = Integer.parseInt(br.readLine());
+            switch (ch) {
+                case 1:
+                    BusIntime(con, br);
+                    break;
+                case 2:
+                    BusOuttime(con, br);
+                    break;
+                case 3:
+                    busDetails();
+                    break;
 
-        busDetails();
+                case 4:
+                    return;
+            }
+        }
     }
 }
 
