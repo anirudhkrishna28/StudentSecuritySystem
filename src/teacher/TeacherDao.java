@@ -38,7 +38,7 @@ public class TeacherDao extends Student {
     }
 
         public static void getEvent(BufferedReader br,Connection con) throws IOException, SQLException {
-        int i=length;
+        int i=len;
             while(i-->0)
             {
                 System.out.println("Enter the rollno:");
@@ -55,13 +55,11 @@ public class TeacherDao extends Student {
         }
 
     public static void getPresent(BufferedReader br,Connection con) throws IOException, SQLException {
-    int i=length;
+    int i=len;
         while(i-->0)
         {
             System.out.println("Enter the rollno:");
             Integer rollno = Integer.parseInt(br.readLine());
-
-
                 Teacher t = new Teacher();
                 System.out.println("Enter the attendence:");
                 String event = br.readLine();
@@ -75,7 +73,7 @@ public class TeacherDao extends Student {
 
 
 
-    public static void displayStudnetsPresent(Connection con) throws SQLException {
+    public static void StudnetsPresent(Connection con) throws SQLException {
         Statement st  = con.createStatement();
         String query = "select s.Name_of_Student,w.In_Time,w.Out_Time from Student s,Watchman w where s.Bus_Number=w.Bus_no and Present_Absent='P'";
         ResultSet rs = st.executeQuery(query);
@@ -116,7 +114,7 @@ public class TeacherDao extends Student {
    
     public static void display()
     {
-        int i= inevent;
+        int i= noOfStud;
         while(i-->0)
         {
             System.out.println("name: "+stud.get(i).getName()+" "+"  Intime: "+stud.get(i).getIntime()+"  OutTime: "+stud.get(i).getOuttime());
@@ -140,7 +138,7 @@ public class TeacherDao extends Student {
         String query = "select count(Roll_Number) from Student";
         ResultSet rs = st.executeQuery(query);
         rs.next();
-         length = rs.getInt("COUNT(Roll_Number)");
+        len = rs.getInt("COUNT(Roll_Number)");
 
 
     }
@@ -154,15 +152,38 @@ public class TeacherDao extends Student {
         String pass="anirudh";
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection(url,uname,pass);
+        while(true) {
+            System.out.println("Enter the choice:");
+            System.out.println("1) Enter the Attendence:");
+            System.out.println("2) Enter the Event:");
+            System.out.println("3) Display students who are Present:");
+            System.out.println("4) Display students who participated in Event:");
+            System.out.println("5) exit:");
+            int choice = Integer.parseInt(br.readLine());
+            switch (choice) {
+                case 1:
+                    count(con);
+                    getPresent(br, con);
+                    //count(con);
+                    break;
+                case 2:
+                    count(con);
+                    getEvent(br, con);
+                    break;
+                case 3:
+                    StudnetsPresent(con);
+                    display();
+                    break;
+                case 4:
+                    StudnetEvent(con);
+                    displayevent();
+                    break;
+                case 5:
+                    System.exit(0);
 
-//        displayStudnetsPresent(con);
-//        display();
-//       getPresent(br,con);
-//        getEvent(br,con);
 
-        count(con);
-        StudnetEvent(con);
-        displayevent();
+            }
+        }
 
 
 

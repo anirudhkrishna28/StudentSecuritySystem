@@ -4,22 +4,8 @@ import java.sql.*;
 
 public class StudentDao extends Student {
 
-        public void getAllStudentsDetails()
-        {
-            //display all records of students
-        }
+       // Integer count=0;
 
-        //List<Student> allStudents  = new List<Student>();
-
-        public void displayStudentsInEvents()
-        {
-            //displaying students involved in events
-        }
-        Integer count=0;
-        public Integer countNoOfAbsentees()
-        {
-         return count;   //return absentees count
-        }
 
  public static void main(String[] args)throws ClassNotFoundException, SQLException {
         //database connection
